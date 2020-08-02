@@ -37,3 +37,23 @@ func TestBasename2(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkBasename(b *testing.B) {
+	s := "//home/root/a.txt.back"
+	want := "a.txt"
+	for i := 0; i < b.N; i++ {
+		if ans := basename1(s); ans != want {
+			b.Errorf("basename1(%s)=%s,want %s\n", s, ans, want)
+		}
+	}
+}
+
+func BenchmarkBasename2(b *testing.B) {
+	s := "//home/root/a.txt.back"
+	want := "a.txt"
+	for i := 0; i < b.N; i++ {
+		if ans := basename2(s); ans != want {
+			b.Errorf("basename2(%s)=%s,want %s\n", s, ans, want)
+		}
+	}
+}
