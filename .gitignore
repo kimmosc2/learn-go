@@ -18,3 +18,7 @@
 
 /.idea/
 /.vscode/
+
+
+*.gz
+*.pb.gz
