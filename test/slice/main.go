@@ -8,7 +8,7 @@ func main() {
 	a := make([]int, 3, 4)
 	printSlice(a, "before")
 	changeSlice(a, 1)
-	printSlice(a, "after")
+	printSlice(a, "agifter")
 
 }
 
