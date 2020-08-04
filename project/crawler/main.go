@@ -8,6 +8,7 @@ import (
 	"golang.org/x/text/transform"
 	"io/ioutil"
 	"net/http"
+	"regexp"
 )
 
 func main() {
@@ -29,11 +30,21 @@ func main() {
 	e := determineEncoding(peek)
 	utf8code := transform.NewReader(reader, e.NewDecoder())
 	all, err := ioutil.ReadAll(utf8code)
+	printCityList(all)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(string(all))
+	// fmt.Println(string(all))
 
+}
+
+func printCityList(contents []byte) {
+	re := regexp.MustCompile(`<a href="(http://www.zhenai.com/zhenghun/[0-9a-z]+)"[^>]*>([^<]+)</a>`)
+
+	matches := re.FindAllSubmatch(contents, -1)
+	for _, m := range matches {
+		fmt.Printf("city:%s url:%s\n", m[2], m[1])
+	}
 }
 
 func determineEncoding(body []byte) encoding.Encoding {
