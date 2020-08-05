@@ -6,10 +6,9 @@ type Request struct {
 	ParserFunc func([]byte) ParseResult
 }
 
-// ParseResult 包含一个Request slice和城市名称
+// ParseResult 包含一个Request slice
 type ParseResult struct {
 	Requests []Request
-	// Item 城市名称
 	Item     []interface{}
 }
 
