@@ -34,4 +34,5 @@ func viewFile(w http.ResponseWriter, r *http.Request) error {
 		return err
 	}
 	w.Write(b)
+	return nil
 }
